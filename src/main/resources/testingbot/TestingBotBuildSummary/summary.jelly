@@ -1,30 +1,47 @@
 <j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
-    <t:summary icon="/plugin/testingbot/images/48x48/logo.png">
+<t:summary icon="/plugin/testingbot/images/48x48/logo.png">
     	<strong>TestingBot results</strong>
     	<br />
         <table>
             <thead>
                 <th>TestName</th>
                 <th>SessionId</th>
+                <th>Environment</th>
                 <th>Passed?</th>
             </thead>
             <tbody>
-     	 <j:forEach var="cs" items="${it.sessionIds}">
-     	 <l:ajax>
+            <j:forEach var="cs" items="${it.sessionIds}">
+            <l:ajax>
                 <tr>
                 	<td>
-                    	<a href="testReport/(root)/${cs.className}/${cs.testName}/testingbot/">${cs.testName}</a>
+                    <a href="testReport/(root)/${cs.className}/${cs.testName}/testingbot/">${cs.testName}</a>
                 	</td>
                 	<td>
                 		${cs.sessionId}
                 	</td>
-                	<td>
-                		${cs.isPassed}
+                <td>
+                    ${cs.test.browser} - ${cs.test.browserVersion} | ${cs.test.os}
+                </td>
+                	<td style="text-align: center">
+                    <j:if test="${cs.isPassed == true}">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 97.619 97.618" style="enable-background:new 0 0 97.619 97.618;" xml:space="preserve">
+                            <g>
+                                    <path d="M96.939,17.358L83.968,5.959c-0.398-0.352-0.927-0.531-1.449-0.494C81.99,5.5,81.496,5.743,81.146,6.142L34.1,59.688   L17.372,37.547c-0.319-0.422-0.794-0.701-1.319-0.773c-0.524-0.078-1.059,0.064-1.481,0.385L0.794,47.567   c-0.881,0.666-1.056,1.92-0.39,2.801l30.974,40.996c0.362,0.479,0.922,0.771,1.522,0.793c0.024,0,0.049,0,0.073,0   c0.574,0,1.122-0.246,1.503-0.68l62.644-71.297C97.85,19.351,97.769,18.086,96.939,17.358z" fill="#91DC5A"/>
+                            </g>
+                        </svg>
+                    </j:if>
+                    <j:if test="${cs.isPassed == false}">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 348.333 348.334" style="enable-background:new 0 0 348.333 348.334;" xml:space="preserve">
+                            <g>
+                                    <path d="M336.559,68.611L231.016,174.165l105.543,105.549c15.699,15.705,15.699,41.145,0,56.85   c-7.844,7.844-18.128,11.769-28.407,11.769c-10.296,0-20.581-3.919-28.419-11.769L174.167,231.003L68.609,336.563   c-7.843,7.844-18.128,11.769-28.416,11.769c-10.285,0-20.563-3.919-28.413-11.769c-15.699-15.698-15.699-41.139,0-56.85   l105.54-105.549L11.774,68.611c-15.699-15.699-15.699-41.145,0-56.844c15.696-15.687,41.127-15.687,56.829,0l105.563,105.554   L279.721,11.767c15.705-15.687,41.139-15.687,56.832,0C352.258,27.466,352.258,52.912,336.559,68.611z" fill="#D80027"/>
+                            </g>
+                         </svg>
+                    </j:if>
                 	</td>
                 </tr>
          </l:ajax>
          </j:forEach>
          </tbody>
-         </table>
+        </table>
     </t:summary>
 </j:jelly>

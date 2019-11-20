@@ -1,17 +1,22 @@
 package testingbot;
 
-public class TestingBotBuildObject {
+import com.testingbot.models.TestingbotTest;
 
+public class TestingBotBuildObject {
     private String sessionId;
     private String className;
     private String testName;
     private final boolean isPassed;
+    private String authHash;
+    private transient TestingbotTest test;
 
-    public TestingBotBuildObject(String sessionId, String className, String testName, boolean isPassed) {
+    public TestingBotBuildObject(String sessionId, String className, String testName, boolean isPassed, String authHash, TestingbotTest test) {
       this.sessionId = sessionId;
       this.className = className;
       this.testName = testName;
       this.isPassed = isPassed;
+      this.authHash = authHash;
+      this.test = test;
     }
 
     /**
@@ -56,7 +61,39 @@ public class TestingBotBuildObject {
         this.testName = testName;
     }
 
-    public String getIsPassed() {
-        return isPassed ? "Yes" : "No";
+    
+    /**
+     * @return the isPassed
+     */
+    public boolean getIsPassed() {
+        return isPassed;
+    }
+
+    /**
+     * @return the test
+     */
+    public TestingbotTest getTest() {
+        return test;
+    }
+
+    /**
+     * @param test the test to set
+     */
+    public void setTest(TestingbotTest test) {
+        this.test = test;
+    }
+
+    /**
+     * @return the authHash
+     */
+    public String getAuthHash() {
+        return authHash;
+    }
+
+    /**
+     * @param authHash the authHash to set
+     */
+    public void setAuthHash(String authHash) {
+        this.authHash = authHash;
     }
 }
