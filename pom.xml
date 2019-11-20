@@ -17,7 +17,7 @@
         <developerConnection>scm:git:git@github.com:jenkinsci/testingbot-plugin.git</developerConnection>
         <tag>testingbot-1.14-SNAPSHOT</tag>
     </scm>
-    <url>https://wiki.jenkins-ci.org/display/JENKINS/TestingBot+Selenium+Plugin</url>
+    <url>https://github.com/jenkinsci/testingbot-plugin</url>
     <developers>
         <developer>
             <id>testingbot</id>
@@ -25,12 +25,6 @@
             <email>info@testingbot.com</email>
         </developer>
     </developers>
-    <distributionManagement>
-        <repository>
-            <id>maven.jenkins-ci.org</id>
-            <url>https://repo.jenkins-ci.org/releases/</url>
-        </repository>
-    </distributionManagement>
     <build>
         <plugins>
             <plugin>
