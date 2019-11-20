@@ -15,7 +15,7 @@
     <scm>
         <connection>scm:git:git://github.com/jenkinsci/testingbot-plugin.git</connection>
         <developerConnection>scm:git:git@github.com:jenkinsci/testingbot-plugin.git</developerConnection>
-        <tag>testingbot-1.14-SNAPSHOT</tag>
+        <tag>testingbot-1.15</tag>
     </scm>
     <url>https://github.com/jenkinsci/testingbot-plugin</url>
     <developers>
@@ -49,7 +49,7 @@
     <description>This plugin integrates videos/screenshots of your TestingBot.com Selenium tests</description>
     <groupId>testingbot</groupId>
     <artifactId>testingbot</artifactId>
-    <version>1.15-SNAPSHOT</version>
+    <version>1.15</version>
     <packaging>hpi</packaging>
     <repositories>
         <repository>
