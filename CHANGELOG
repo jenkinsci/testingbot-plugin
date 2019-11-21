@@ -1,0 +1,39 @@
+Version 1.16
+2019-11-20
+
+- Add Pipeline support
+- Change authentication system to use Credentials Plugin
+- Update tunnel
+- Bugfixes, fix deprecations and general improvements 
+
+Version 1.13
+2017-11-17
+
+- Update tunnel version to latest
+- General bugfixes and improvements
+
+Version 1.8
+2015-08-28
+
+- Fix deprecated warning getTestResultAction() with getAction(AbstractTestResultAction.class)
+
+Version 1.7
+2015-08-28
+
+- Improved API sending to TestingBot
+- Updated tunnel to latest 1.16 version
+- Added TestingBot report + link on the job summary pages
+
+Version 1.4
+2012-05-05
+
+- Fix wrong link to testingbot report in the test result sidebar
+- Added new TestingBot tunnel code
+
+Version 1.3
+2012-04-26
+
+- Fix null-pointer exceptions when trying to scan test output for sessionIDs.
+
+Version 1.2
+2012-02-21 Initial version

@@ -2,7 +2,6 @@ Jenkins TestingBot Plugin
 ====================
 
 [![Jenkins Plugin](https://img.shields.io/jenkins/plugin/v/testingbot.svg)](https://plugins.jenkins.io/testingbot)
-[![GitHub release](https://img.shields.io/github/release/jenkinsci/testingbot-plugin.svg?label=changelog)](https://github.com/jenkinsci/testingbot-plugin/releases/latest)
 [![Jenkins Plugin Installs](https://img.shields.io/jenkins/plugin/i/testingbot.svg?color=blue)](https://plugins.jenkins.io/testingbot)
 
 This Jenkins plugin integrates TestingBot.com features inside Jenkins.
@@ -11,7 +10,7 @@ This Jenkins plugin integrates TestingBot.com features inside Jenkins.
 
 * Setup and teardown TestingBot Tunnel for testing internal websites, dev or staging environments. 
 * Embed TestingBot Reports in your Jenkins job results; see screenshots/video of each tests from inside Jenkins.
-* Use the plugin in combination with Pipeline tests. `testingbot()` and `testingbotTunnel()`
+* Use the plugin in combination with Pipeline tests: `testingbot()`, `testingbotTunnel()` and `testingbotPublisher()`
 
 ## Prerequisites
 
@@ -20,10 +19,14 @@ This Jenkins plugin integrates TestingBot.com features inside Jenkins.
 
 ## Setting up the plugin
 Look for the plugin on the Jenkins Manage Plugins page and click 'install'.
+
+![credentials][help/credentials.png]
 Once installed, go to **Manage Jenkins > Configure System**, scroll down to where you can enter the TestingBot credentials.
+
 The plugin uses the Credentials plugin. Click the 'Add' button and enter your key and secret, which you can obtain from the [TestingBot Member area](https://testingbot.com/members).
 
 ## Configuring a Job to use the TestingBot Plugin
+![build environment][help/buildenv.png]
 In the **Build Environment** section, enable the 'TestingBot' option.
 The API key you entered previously should be visible there, together with an option to use the [TestingBot Tunnel](https://testingbot.com/support/other/tunnel) during your build.
 
@@ -32,14 +35,19 @@ If you want to see the test results (screenshots, logs and a video screencast of
 
 The plugin will parse the JUnit test result files in the post-build step to associate test results with TestingBot jobs. Please make sure that JUnit plugin is installed.
 
-Make sure you enable **Publish JUnit test result report** and point to the correct test report files (for example `test-reports/*.xml`).
-Enable the **Embed TestingBot reports** option under the **Additional test report features**.
+![postbuild action][help/postbuild.png]
+
+Click on **Add post-build action** in **Post-build Actions**. Make sure you enable **Publish JUnit test result report** and point to the correct test report files (for example `test-reports/*.xml`).
+
+![publisher][help/publisher.png]
+
+Select the **Run TestingBot Test Publisher** option from the **Post Build Action** list.
 
 The TestingBot plugin will parse both `stdout` and `stderr`, looking for lines that have this format:
-
 `TestingBotSessionID=<sessionId>`
 
 The `sessionId` can be obtained from the `RemoteWebDriver` instance of Selenium. Depending on the test framework/language you are using, the syntax may be different.
+
 An example on how to do this: `((RemoteWebDriver) driver).getSessionId().toString()`
 
 A full example that you can use is available on our GitHub [Jenkins-Demo](https://github.com/testingbot/Jenkins-Demo) page.
@@ -51,6 +59,13 @@ Currently the plugin offers these commands:
 * `testingbot(String credentialId)`
 * `testingbotTunnel(credentialsId: '', options: ' -d -a')`
 * `testingbotPublisher()`
+
+The `testingbot()` command requires a `credentialId` which is the Id you can find on the Jenkins Credentials page, the unique Id connected to the TestingBot API key and Secret you entered previously. This command will set environment variables which you can use in your test, including `TB_KEY` and `TB_SECRET`.
+
+The `testingbotTunnel()` command requires both a `credentialId` and `options`. The options are the options you can specify with the TestingBot Tunnel.
+This will start the tunnel before your job runs. Once the job finishes, the tunnel will be shutdown.
+
+`testingbotPublisher()` will try to read the JUnit report files and show the test results from TestingBot.
 
 An example:
 
