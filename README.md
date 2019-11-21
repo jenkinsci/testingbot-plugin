@@ -20,13 +20,15 @@ This Jenkins plugin integrates TestingBot.com features inside Jenkins.
 ## Setting up the plugin
 Look for the plugin on the Jenkins Manage Plugins page and click 'install'.
 
-![credentials](https://github.com/jenkinsci/testingbot-plugin/raw/master/help/credentials.png)
 Once installed, go to **Manage Jenkins > Configure System**, scroll down to where you can enter the TestingBot credentials.
+
+![credentials](https://github.com/jenkinsci/testingbot-plugin/raw/master/help/credentials.png)
 
 The plugin uses the Credentials plugin. Click the 'Add' button and enter your key and secret, which you can obtain from the [TestingBot Member area](https://testingbot.com/members).
 
 ## Configuring a Job to use the TestingBot Plugin
 ![build environment](https://github.com/jenkinsci/testingbot-plugin/raw/master/help/buildenv.png)
+
 In the **Build Environment** section, enable the 'TestingBot' option.
 The API key you entered previously should be visible there, together with an option to use the [TestingBot Tunnel](https://testingbot.com/support/other/tunnel) during your build.
 
