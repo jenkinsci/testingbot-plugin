@@ -20,13 +20,13 @@ This Jenkins plugin integrates TestingBot.com features inside Jenkins.
 ## Setting up the plugin
 Look for the plugin on the Jenkins Manage Plugins page and click 'install'.
 
-![credentials][help/credentials.png]
+![credentials](https://github.com/jenkinsci/testingbot-plugin/raw/master/help/credentials.png)
 Once installed, go to **Manage Jenkins > Configure System**, scroll down to where you can enter the TestingBot credentials.
 
 The plugin uses the Credentials plugin. Click the 'Add' button and enter your key and secret, which you can obtain from the [TestingBot Member area](https://testingbot.com/members).
 
 ## Configuring a Job to use the TestingBot Plugin
-![build environment][help/buildenv.png]
+![build environment](https://github.com/jenkinsci/testingbot-plugin/raw/master/help/buildenv.png)
 In the **Build Environment** section, enable the 'TestingBot' option.
 The API key you entered previously should be visible there, together with an option to use the [TestingBot Tunnel](https://testingbot.com/support/other/tunnel) during your build.
 
@@ -35,11 +35,11 @@ If you want to see the test results (screenshots, logs and a video screencast of
 
 The plugin will parse the JUnit test result files in the post-build step to associate test results with TestingBot jobs. Please make sure that JUnit plugin is installed.
 
-![postbuild action][help/postbuild.png]
+![postbuild action](https://github.com/jenkinsci/testingbot-plugin/raw/master/help/postbuild.png)
 
 Click on **Add post-build action** in **Post-build Actions**. Make sure you enable **Publish JUnit test result report** and point to the correct test report files (for example `test-reports/*.xml`).
 
-![publisher][help/publisher.png]
+![publisher](https://github.com/jenkinsci/testingbot-plugin/raw/master/help/publisher.png)
 
 Select the **Run TestingBot Test Publisher** option from the **Post Build Action** list.
 
