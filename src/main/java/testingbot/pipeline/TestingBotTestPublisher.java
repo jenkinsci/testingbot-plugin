@@ -21,7 +21,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import testingbot.TestReporter;
 
 public class TestingBotTestPublisher extends Recorder implements SimpleBuildStep {

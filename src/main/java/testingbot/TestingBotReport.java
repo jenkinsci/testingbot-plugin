@@ -6,12 +6,10 @@ package testingbot;
  */
 import com.testingbot.testingbotrest.TestingbotREST;
 import hudson.model.AbstractBuild;
-import hudson.model.Run;
 import hudson.tasks.junit.CaseResult;
 import hudson.tasks.junit.TestAction;
 import java.util.Collections;
 import java.util.List;
-import testingbot.TestingBotBuildWrapper.BuildWrapperItem;
 
 /**
  * Show videos for the tests.

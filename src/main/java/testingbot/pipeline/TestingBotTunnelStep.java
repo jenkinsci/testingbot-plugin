@@ -1,16 +1,13 @@
 package testingbot.pipeline;
 
-import com.cloudbees.plugins.credentials.CredentialsMatchers;
 import com.cloudbees.plugins.credentials.CredentialsProvider;
 import com.cloudbees.plugins.credentials.common.StandardListBoxModel;
-import com.cloudbees.plugins.credentials.common.StandardUsernameListBoxModel;
 import com.cloudbees.plugins.credentials.domains.DomainRequirement;
 import com.google.inject.Inject;
 import com.testingbot.tunnel.Api;
 import com.testingbot.tunnel.App;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import hudson.Extension;
-import hudson.Util;
 import hudson.model.Computer;
 import hudson.model.Item;
 import hudson.model.Job;

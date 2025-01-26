@@ -2,14 +2,12 @@ package testingbot;
 
 import hudson.model.Run;
 import jenkins.model.RunAction2;
-import org.kohsuke.stapler.Stapler;
 import org.kohsuke.stapler.StaplerRequest;
 import org.kohsuke.stapler.StaplerResponse;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class TestingBotTestEmbed implements RunAction2 {

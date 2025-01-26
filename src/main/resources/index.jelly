@@ -1,0 +1,4 @@
+<?jelly escape-by-default='true'?>
+<div>
+   This plugin integrates videos/screenshots of your TestingBot.com Selenium tests
+</div>
