@@ -30,7 +30,7 @@
                 <div>
                     <!-- loading="lazy" defers the embed until the row is expanded (the iframe is
                          display:none inside a closed details), so collapsed rows stay lightweight. -->
-                    <iframe src="https://testingbot.com/mini/?id=${cs.sessionId}&amp;auth=${cs.authHash}&amp;ref=jenkins"
+                    <iframe src="https://testingbot.com/mini?id=${cs.sessionId}&amp;auth=${cs.authHash}&amp;ref=jenkins"
                             loading="lazy" style="width: 100%; min-height: 600px; border: none"></iframe>
                 </div>
             </div>

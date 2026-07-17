@@ -10,7 +10,7 @@
             <a href="https://testingbot.com/tests/${tbo.sessionId}?auth=${tbo.authHash}&amp;ref=jenkins" target="_blank">View on TestingBot</a>
             <l:ajax>
                 <div>
-                    <iframe src="https://testingbot.com/mini/?id=${tbo.sessionId}&amp;auth=${tbo.authHash}&amp;ref=jenkins" style="width: 100%; min-height: 100vh; border: none"></iframe>
+                    <iframe src="https://testingbot.com/mini?id=${tbo.sessionId}&amp;auth=${tbo.authHash}&amp;ref=jenkins" style="width: 100%; min-height: 100vh; border: none"></iframe>
                 </div>
             </l:ajax>
         </l:main-panel>

@@ -9,7 +9,7 @@
         <a href="https://testingbot.com/tests/${it.id}?auth=${it.hash}&amp;ref=jenkins" target="_blank">Go To TestingBot</a>
         <l:ajax>
             <div>
-                <iframe src="https://testingbot.com/mini/?id=${it.id}&amp;auth=${it.hash}&amp;ref=jenkins" style="width: 100%; min-height: 1000px; border: none"></iframe>
+                <iframe src="https://testingbot.com/mini?id=${it.id}&amp;auth=${it.hash}&amp;ref=jenkins" style="width: 100%; min-height: 1000px; border: none"></iframe>
             </div>
         </l:ajax>
     </l:main-panel>
