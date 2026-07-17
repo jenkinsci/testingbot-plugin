@@ -31,7 +31,7 @@
                     <div style="margin: 6px 0 12px;">
                         <a href="https://testingbot.com/tests/${cs.sessionId}?auth=${cs.authHash}&amp;ref=jenkins" target="_blank">View on TestingBot</a>
                         <div>
-                            <iframe src="https://testingbot.com/mini/?id=${cs.sessionId}&amp;auth=${cs.authHash}&amp;ref=jenkins"
+                            <iframe src="https://testingbot.com/mini?id=${cs.sessionId}&amp;auth=${cs.authHash}&amp;ref=jenkins"
                                     loading="lazy" style="width: 100%; min-height: 600px; border: none"></iframe>
                         </div>
                     </div>
