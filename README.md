@@ -60,9 +60,10 @@ Set your test's `build` desired capability to `$TESTINGBOT_BUILD` so all session
 
 ## Mobile app testing
 
-To test a native mobile app (Appium) built by your Jenkins job, upload the `.apk`/`.ipa` to
+To test a native mobile app (Appium) built by your Jenkins job, upload the app to
 [TestingBot Storage](https://testingbot.com/support/mobile/storage) and reference the returned
-`tb://` app URL as the Appium `app` capability.
+`tb://` app URL as the Appium `app` capability. Android `.apk`, iOS `.ipa`, and a `.zip` of an
+iOS Simulator `.app` build are all supported.
 
 In a **freestyle** job, add the **Upload an app to TestingBot Storage** build step *before* your
 test step. Point it at the built app (for example `build/outputs/apk/debug/app-debug.apk`); it

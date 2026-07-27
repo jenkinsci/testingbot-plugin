@@ -14,8 +14,9 @@ import java.io.IOException;
 import jenkins.MasterToSlaveFileCallable;
 
 /**
- * Uploads a built mobile app ({@code .apk}/{@code .ipa}) to TestingBot Storage and returns the
- * resulting {@code tb://} app URL. Shared by the freestyle {@link TestingBotUploadBuilder} build
+ * Uploads a built app ({@code .apk}/{@code .ipa}, or a {@code .zip} of an iOS Simulator
+ * {@code .app}) to TestingBot Storage and returns the resulting {@code tb://} app URL. Shared by the
+ * freestyle {@link TestingBotUploadBuilder} build
  * step and the pipeline {@code testingbotUpload} step.
  *
  * <p>The upload runs on the node that holds the artifact (the build's agent), mirroring how the

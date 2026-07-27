@@ -32,9 +32,9 @@ import testingbot.TestingBotCredentials;
 import testingbot.TestingBotUploader;
 
 /**
- * {@code testingbotUpload(file: 'build/app.apk')} — uploads a built mobile app to TestingBot
- * Storage and returns the resulting {@code tb://} app URL, for use as the Appium {@code app}
- * capability:
+ * {@code testingbotUpload(file: 'build/app.apk')} — uploads a built app ({@code .apk}/{@code .ipa},
+ * or a {@code .zip} of an iOS Simulator {@code .app}) to TestingBot Storage and returns the
+ * resulting {@code tb://} app URL, for use as the Appium {@code app} capability:
  *
  * <pre>{@code
  * def appUrl = testingbotUpload file: 'build/app.apk'

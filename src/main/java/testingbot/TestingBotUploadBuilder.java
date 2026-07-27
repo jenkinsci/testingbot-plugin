@@ -35,8 +35,9 @@ import org.kohsuke.stapler.QueryParameter;
 import org.kohsuke.stapler.verb.POST;
 
 /**
- * Freestyle build step that uploads a built mobile app ({@code .apk}/{@code .ipa}) to TestingBot
- * Storage before the tests run, and exports the resulting {@code tb://} app URL as an environment
+ * Freestyle build step that uploads a built app ({@code .apk}/{@code .ipa}, or a {@code .zip} of an
+ * iOS Simulator {@code .app}) to TestingBot Storage before the tests run, and exports the resulting
+ * {@code tb://} app URL as an environment
  * variable (default {@code TESTINGBOT_APP_URL}) for later build steps to use as their Appium
  * {@code app} capability.
  *
@@ -154,7 +155,7 @@ public class TestingBotUploadBuilder extends Builder implements SimpleBuildStep 
         @SuppressWarnings("unused")
         public FormValidation doCheckFile(@QueryParameter String value) {
             return Util.fixEmptyAndTrim(value) == null
-                    ? FormValidation.error("Enter the path to the app (.apk/.ipa) to upload.")
+                    ? FormValidation.error("Enter the path to the app (.apk/.ipa/.zip) to upload.")
                     : FormValidation.ok();
         }
 
