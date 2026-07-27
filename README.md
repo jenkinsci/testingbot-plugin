@@ -58,12 +58,37 @@ Whenever the plugin injects credentials — through the freestyle **Build Enviro
 
 Set your test's `build` desired capability to `$TESTINGBOT_BUILD` so all sessions from a single Jenkins build are grouped under one TestingBot build. The **TestingBot Build** link on the build page then embeds that build's TestingBot report (every session, with status and video) directly inside Jenkins, without leaving the CI UI.
 
+## Mobile app testing
+
+To test a native mobile app (Appium) built by your Jenkins job, upload the `.apk`/`.ipa` to
+[TestingBot Storage](https://testingbot.com/support/mobile/storage) and reference the returned
+`tb://` app URL as the Appium `app` capability.
+
+In a **freestyle** job, add the **Upload an app to TestingBot Storage** build step *before* your
+test step. Point it at the built app (for example `build/outputs/apk/debug/app-debug.apk`); it
+uploads the file and exports the app URL as an environment variable (default `TESTINGBOT_APP_URL`)
+for the following steps to use as their `app` capability.
+
+In a **pipeline**, the `testingbotUpload` step returns the app URL:
+
+```groovy
+testingbot('251ca561abdfewf285') {
+    def appUrl = testingbotUpload(file: 'build/app.apk')
+    // pass appUrl as the Appium "app" capability in your tests
+    sh "APP_URL=${appUrl} ./run-appium-tests.sh"
+}
+```
+
+The upload runs on the agent that holds the artifact and only the credentials are sent over the
+(encrypted) remoting link — the app bytes are POSTed straight from the agent to TestingBot.
+
 ## Pipeline
 The plugin offers pipeline support, which can be used with a Jenkinsfile.
 
 Currently the plugin offers these commands:
 * `testingbot(String credentialId)`
 * `testingbotTunnel(credentialsId: '', options: ' -d -a')`
+* `testingbotUpload(file: 'build/app.apk')`
 * `testingbotPublisher()`
 
 The `testingbot()` command requires a `credentialId` which is the Id you can find on the Jenkins Credentials page, the unique Id connected to the TestingBot API key and Secret you entered previously. This command will set environment variables which you can use in your test, including `TB_KEY` and `TB_SECRET`.
