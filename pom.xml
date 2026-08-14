@@ -13,6 +13,15 @@
         <jenkins.version>2.541.3</jenkins.version>
         <gitHubRepo>jenkinsci/testingbot-plugin</gitHubRepo>
         <hudsonTags>buildwrapper</hudsonTags>
+        <!--
+          The exact set of third-party jars bundled into the .hpi. Any drift must be deliberate:
+          bundling a library that a Jenkins *-api plugin already provides puts duplicate classes on the
+          classpath, while dropping one that no declared plugin dependency provides causes
+          NoClassDefFoundError at runtime. Strict mode turns drift into a build failure; the runtime
+          half of the same invariant is checked by PluginLinkageIT.
+        -->
+        <hpi.bundledArtifacts>TestingBotTunnel,base64,gson,httpclient,testingbotrest</hpi.bundledArtifacts>
+        <hpi.strictBundledArtifacts>true</hpi.strictBundledArtifacts>
     </properties>
     <scm>
         <connection>scm:git:https://github.com/${gitHubRepo}.git</connection>
@@ -44,6 +53,25 @@
                         <exclude>**/InjectedTest.java</exclude>
                     </excludes>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <!--
+                  Runs PluginLinkageIT, which inspects the packaged .hpi. Because InjectedTest (and
+                  with it any JenkinsRule coverage) is excluded above, nothing else ever loads this
+                  plugin under a real plugin classloader; that integration test is the only guard
+                  against a library that resolves on Maven's flat test classpath but is missing from
+                  the plugin's Plugin-Dependencies at runtime.
+                -->
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
@@ -139,6 +167,31 @@
             <artifactId>assertj-core</artifactId>
             <version>3.27.7</version>
             <scope>test</scope>
+        </dependency>
+
+        <!--
+          testingbotrest uses org.json at runtime. The raw org.json:json jar is excluded above so the
+          hpi does not bundle a second copy of a class Jenkins already ships; the classes come from the
+          json-api plugin instead. That plugin must be a *direct* dependency here so it is written into
+          this plugin's Plugin-Dependencies manifest entry — reaching it transitively through another
+          plugin does not put org.json on this plugin's classloader and yields
+          NoClassDefFoundError: org/json/JSONException at runtime.
+        -->
+        <dependency>
+            <groupId>io.jenkins.plugins</groupId>
+            <artifactId>json-api</artifactId>
+        </dependency>
+
+        <!--
+          Same reasoning for Apache HttpComponents. httpcore and httpmime are excluded from
+          testingbotrest above, so only httpclient is bundled; the core packages (org.apache.http and
+          its .entity/.message/.util/.entity.mime subpackages) come from this plugin. It was previously
+          reachable only transitively via workflow-basic-steps — declared directly so the linkage does
+          not depend on another plugin's dependency list. Enforced by PluginLinkageIT.
+        -->
+        <dependency>
+            <groupId>org.jenkins-ci.plugins</groupId>
+            <artifactId>apache-httpcomponents-client-4-api</artifactId>
         </dependency>
 
         <dependency>
